@@ -126,6 +126,7 @@ export const MapView: React.FC<MapViewProps> = ({ mapProgress, onLevelSelect, on
           <IslandMap
             island={currentIsland}
             onLevelSelect={onLevelSelect}
+            currentLevelId={mapProgress.currentLevel}
           />
         </div>
       </div>

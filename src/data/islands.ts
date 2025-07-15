@@ -4,16 +4,16 @@ import { wordData } from './words';
 // 将单词分组到不同关卡
 const createLevelsFromWords = (): Level[] => {
   const levels: Level[] = [];
-  const wordsPerLevel = 2; // 每关2个单词，保证有足够的关卡
+  const wordsPerLevel = 10; // 每关10个单词
   
   for (let i = 0; i < wordData.length; i += wordsPerLevel) {
     const levelWords = wordData.slice(i, i + wordsPerLevel);
     const levelId = Math.floor(i / wordsPerLevel) + 1;
-    const isBoss = levelId % 10 === 0; // 每10关有一个Boss关
+    const isBoss = levelId % 5 === 0; // 每5关有一个Boss关
     
     levels.push({
       id: levelId,
-      name: isBoss ? `Boss 关卡 ${Math.floor(levelId / 10)}` : `关卡 ${levelId}`,
+      name: isBoss ? `Boss 关卡 ${Math.floor(levelId / 5)}` : `关卡 ${levelId}`,
       description: isBoss 
         ? `挑战Boss关卡！完成所有单词以解锁下一岛屿` 
         : `学习新单词: ${levelWords.map(w => w.word).join(', ')}`,
@@ -32,7 +32,7 @@ const createLevelsFromWords = (): Level[] => {
 // 创建岛屿数据
 export const createIslands = (): Island[] => {
   const allLevels = createLevelsFromWords();
-  const levelsPerIsland = 10; // 每个岛屿10关
+  const levelsPerIsland = 5; // 每个岛屿5关
   const islands: Island[] = [];
   
   // 计算需要的岛屿数量
@@ -53,7 +53,9 @@ export const createIslands = (): Island[] => {
       '动物王国',
       '家庭岛',
       '美食岛',
-      '高级岛'
+      '运动岛',
+      '职业岛',
+      '冒险岛'
     ];
     
     const islandDescriptions = [
@@ -64,7 +66,9 @@ export const createIslands = (): Island[] => {
       '探索动物世界的奥秘',
       '了解家庭成员',
       '学习食物和饮料',
-      '挑战更多高级词汇'
+      '掌握运动和活动词汇',
+      '学习各种职业和工作',
+      '挑战最高级词汇'
     ];
     
     islands.push({
